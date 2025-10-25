@@ -48,7 +48,7 @@ plt.figure(figsize=(8, 6))
 servidores = ['Sequencial', 'Competitivo']
 medias = [media_seq, media_comp]
 
-barras = plt.bar(servidores, medias, color=["#c5db00", '#4682b4']) # Vermelho e Azul
+barras = plt.bar(servidores, medias, color=["#ee591e", '#4682b4'])
 plt.title(f'Tempo Médio de Resposta ({num_clientes} Clientes Simultâneos)')
 plt.ylabel('Tempo Médio (segundos)')
 
