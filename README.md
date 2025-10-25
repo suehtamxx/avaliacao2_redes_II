@@ -1,4 +1,4 @@
-# Segunda avaliação: Servidores Web Sequencial vs Competitivo
+# Segunda avaliação: Servidores Web Sequencial vs. Competitivo
 
 Este projeto foi implementado para comparar o desempenho desempenho de um servidor web sequencial e um servidor web competitivo (com o uso de threads) em um ambiente de rede simulado com docker.
 
@@ -10,7 +10,7 @@ Este projeto foi implementado para comparar o desempenho desempenho de um servid
 
 1. Clone este repositório:
    ```bash
-   git clone [link github]
+   git clone https://github.com/suehtamxx/avaliacao2_redes_II.git
    ```
 2. Vá até a pasta do projeto e inicie os contêineres:
    ```bash
