@@ -15,7 +15,7 @@ Este projeto foi implementado para comparar o desempenho desempenho de um servid
 2. Vá até a pasta do projeto e inicie os contêineres:
    ```bash
    cd avaliacao2_redes_II
-   docker compose up -build
+   docker compose up --build
    ```
    Comando para construir as imagens dos servidores e do cliente, configurar a rede e iniciar os servidores(mantenha o terminal aberto).
 
