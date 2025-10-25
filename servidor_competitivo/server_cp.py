@@ -7,7 +7,7 @@ PORT = 80
 
 def handle_request(conn, addr):
     """Função para processar uma requisição individual."""
-    with conn: # 'with conn' garante que a conexão será fechada
+    with conn: 
         print(f"Conexão de {addr} sendo tratada pela Thread: {threading.current_thread().name}")
         
         data = conn.recv(2048)
@@ -15,8 +15,6 @@ def handle_request(conn, addr):
             return
 
         request_str = data.decode('utf-8')
-        # Não vamos printar a requisição aqui para não poluir o log concorrente
-
         header_lines = request_str.split('\r\n')
         request_line = header_lines[0]
         
@@ -45,7 +43,7 @@ def handle_request(conn, addr):
 
         elif path == '/teste-carga':
             if method == 'GET':
-                print(f"Thread {threading.current_thread().name} iniciando tarefa pesada...")
+                print(f"Thread {threading.current_thread().name} iniciando tarefa pesada.")
                 time.sleep(5)
                 print(f"Thread {threading.current_thread().name} concluiu.")
                 body = "<h1>Teste de Carga</h1><p>Esta pagina demorou 5 segundos para carregar (Servidor Competitivo).</p>"
@@ -53,7 +51,7 @@ def handle_request(conn, addr):
             else:
                 send_response(conn, '405 Method Not Allowed', '<h1>405 Method Not Allowed</h1>', custom_id_header)
         
-        elif path == '/dados': # Rota de POST (ADICIONADA)
+        elif path == '/dados':
             if method == 'POST':
                 body_start = request_str.find('\r\n\r\n') + 4
                 post_data = request_str[body_start:]
@@ -64,8 +62,6 @@ def handle_request(conn, addr):
 
         else:
             send_response(conn, '404 Not Found', '<h1>404 Not Found</h1>', custom_id_header)
-        
-        # print(f"Conexão com {addr} fechada pela thread.") # Opcional
 
 
 def send_response(conn, status, body, custom_id_header=""):
@@ -82,7 +78,6 @@ def send_response(conn, status, body, custom_id_header=""):
     http_response = "\r\n".join(headers) + "\r\n\r\n" + body
     conn.sendall(http_response.encode('utf-8'))
 
-# --- Lógica Principal do Servidor Competitivo ---
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen()
@@ -90,6 +85,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
     while True:
         conn, addr = s.accept()
-        # Inicia uma nova thread para cada conexão e volta a escutar
         client_thread = threading.Thread(target=handle_request, args=(conn, addr))
         client_thread.start()
