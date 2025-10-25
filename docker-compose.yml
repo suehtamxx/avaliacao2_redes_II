@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  servidor_sequencial:
+    build:
+      context: ./servidor_sequencial
+    container_name: servidor_sequencial
+    networks:
+      rede-trabalho:
+        ipv4_address: 98.52.0.2
+    ports:
+      - "8080:80"
+  
+  servidor_competitivo:
+    build:
+      context: ./servidor_competitivo
+    container_name: servidor_competitivo
+    networks:
+      rede-trabalho:
+        ipv4_address: 98.52.0.3
+    ports:
+      - "8081:80"
+  
+  cliente:
+    build:
+      context: ./cliente
+    container_name: cliente
+    networks:
+      rede-trabalho:
+        ipv4_address: 98.52.0.10
+    depends_on:
+      - servidor_sequencial
+      - servidor_competitivo
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./cliente:/app
+
+networks:
+  rede-trabalho:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 98.52.0.0/24
