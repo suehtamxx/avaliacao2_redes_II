@@ -1,4 +1,4 @@
-# Segunda avaliação: Servidores Web Sequencial vs. Competitivo
+# Segunda avaliação: Servidores Web Sequencial vs Competitivo
 
 Este projeto foi implementado para comparar o desempenho desempenho de um servidor web sequencial e um servidor web competitivo (com o uso de threads) em um ambiente de rede simulado com docker.
 
