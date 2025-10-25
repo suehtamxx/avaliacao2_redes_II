@@ -3,13 +3,10 @@ import hashlib
 import time
 import threading
 
-# --- Configurações ---
 SERVER_HOST_SEQ = 'servidor_sequencial'
 SERVER_HOST_CONC = 'servidor_competitivo'
 SERVER_PORT = 80
 NUM_CLIENTES_SIMULTANEOS = 10 
-
-# --- Funções de Requisição ---
 
 def calcular_hash(matricula, nome):
     dados = f"{matricula} {nome}"
@@ -42,7 +39,7 @@ def enviar_requisicao_unica(host, port, method='GET', path='/', body=''):
 
     http_request = "\r\n".join(request_lines)
 
-    print(f"\n--- Enviando Requisição {method} para {host}:{port}{path} ---")
+    print(f"\nEnviando Requisição {method} para {host}:{port}{path}\n")
     
     start_time = time.time()
     try:
@@ -59,15 +56,13 @@ def enviar_requisicao_unica(host, port, method='GET', path='/', body=''):
         
         end_time = time.time()
         
-        print("--- Resposta Recebida ---")
+        print("\nResposta Recebida")
         print(resposta_completa.decode('utf-8', errors='ignore'))
-        print("-------------------------")
+        print('\n')
         print(f"Tempo total: {end_time - start_time:.4f} segundos")
 
     except Exception as e:
         print(f"Erro na requisição: {e}")
-
-# --- Funções do Teste de Carga (semelhantes às anteriores) ---
 
 def worker_carga(host, port, path, results_list):
     """Função 'ponte' para o teste de carga em threads."""
@@ -98,8 +93,8 @@ def worker_carga(host, port, path, results_list):
 
 def teste_simultaneo(nome_servidor, host):
     """Dispara N clientes simultaneamente usando o módulo threading."""
-    print(f"\n--- Iniciando Teste de Carga SIMULTÂNEO para o Servidor: {nome_servidor} ---")
-    print(f"Disparando {NUM_CLIENTES_SIMULTANEOS} clientes para a rota /teste-carga...")
+    print(f"\nIniciando Teste de Carga SIMULTÂNEO para o Servidor: {nome_servidor}")
+    print(f"Disparando {NUM_CLIENTES_SIMULTANEOS} clientes para a rota /teste-carga.")
 
     threads = []
     tempos_individuais = [] 
@@ -132,26 +127,20 @@ def teste_simultaneo(nome_servidor, host):
 def rodar_teste_de_carga_completo():
     """Executa o teste nos dois servidores e chama o script de gráficos."""
     tempo_sequencial = teste_simultaneo("Sequencial", SERVER_HOST_SEQ)
-    print("\nAguardando 5 segundos antes do próximo teste...")
+    print("\n5 segundos até o próximo teste.\n")
     time.sleep(5)
     tempo_concorrente = teste_simultaneo("Competitivo", SERVER_HOST_CONC)
 
-    print("\n\n--- CONCLUSÃO DO TESTE DE CARGA ---")
+    print("\n\n Resultados do Teste de Carga")
     print(f"O servidor Sequencial levou {tempo_sequencial:.4f} segundos.")
     print(f"O servidor Competitivo levou {tempo_concorrente:.4f} segundos.")
     
-    # --- Gerar Gráficos ---
-    # Como este script roda DENTRO do contêiner, ele não tem o venv
-    # e não pode rodar o gerar_graficos.py diretamente.
-    # O script de gráficos deve ser rodado do HOST (seu PC)
     print("\nTeste concluído. Os arquivos CSV foram gerados.")
-    print("Por favor, rode 'python3 gerar_graficos.py' no terminal do seu computador (host) para ver os gráficos.")
+    print("Rode 'python3 gerar_graficos.py' no terminal do seu computador (host) para ver os gráficos.")
 
-
-# --- Menu Principal ---
 def main_menu():
     while True:
-        print("\n--- Menu Interativo do Cliente ---")
+        print("\nMenu Interativo do Cliente")
         print("Qual servidor você quer testar?")
         print("  1. Servidor Sequencial")
         print("  2. Servidor Competitivo")
@@ -175,7 +164,7 @@ def main_menu():
             print("Opção inválida.")
             continue
         
-        print(f"\nTestando '{host_escolhido}'...")
+        print(f"\nTestando '{host_escolhido}'")
         print("Qual requisição você quer enviar?")
         print("  1. GET / (Página Inicial)")
         print("  2. POST /dados (Enviar dados)")
