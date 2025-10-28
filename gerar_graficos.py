@@ -6,7 +6,7 @@ print("Gerando gráficos\n")
 
 base_path = 'cliente'
 arquivo_seq = os.path.join(base_path, 'tempo_Sequencial.csv')
-arquivo_comp = os.path.join(base_path, 'tempo_Competitivo.csv')
+arquivo_comp = os.path.join(base_path, 'tempo_Concorrente.csv')
 
 #verifica se os arquivos CSV existem
 if not os.path.exists(arquivo_seq) or not os.path.exists(arquivo_comp):
@@ -28,7 +28,7 @@ num_clientes = len(df_seq)
 #geração do gráfico de linhas
 plt.figure(figsize=(12, 6))
 plt.plot(num_requisicoes, df_seq['tempo_resposta'], marker='o', linestyle='-', label='Servidor Sequencial')
-plt.plot(num_requisicoes, df_comp['tempo_resposta'], marker='x', linestyle='--', label='Servidor Competitivo')
+plt.plot(num_requisicoes, df_comp['tempo_resposta'], marker='x', linestyle='--', label='Servidor Concorrente')
 plt.title(f'Comparação de Tempo de Resposta para {num_clientes} Clientes Simultâneos')
 plt.xlabel('Requisição do Cliente (Nº)')
 plt.ylabel('Tempo de Resposta Individual (segundos)')
@@ -45,7 +45,7 @@ media_seq = df_seq.sum()['tempo_resposta']/num_clientes
 media_comp = df_comp.sum()['tempo_resposta']/num_clientes
 
 plt.figure(figsize=(8, 6))
-servidores = ['Sequencial', 'Competitivo']
+servidores = ['Sequencial', 'Concorrente']
 medias = [media_seq, media_comp]
 
 barras = plt.bar(servidores, medias, color=['#4682b4',"#ee591e"])

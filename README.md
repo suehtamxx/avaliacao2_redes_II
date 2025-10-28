@@ -1,6 +1,6 @@
-# Segunda avaliação: Servidores Web Sequencial vs. Competitivo
+# Segunda avaliação: Servidores Web Sequencial vs. Concorrente
 
-Este projeto foi implementado para comparar o desempenho desempenho de um servidor web sequencial e um servidor web competitivo (com o uso de threads) em um ambiente de rede simulado com docker.
+Este projeto foi implementado para comparar o desempenho desempenho de um servidor web sequencial e um servidor web concorrente (com o uso de threads) em um ambiente de rede simulado com docker.
 
 ## Requisitos
 * Docker
@@ -36,7 +36,7 @@ Este projeto foi implementado para comparar o desempenho desempenho de um servid
 
 ## 3. Como Gerar os Gráficos
 
-O teste de carga (Opção 3 do menu do cliente) irá gerar automaticamente os arquivos `tempo_Sequencial.csv` e `tempo_Competitivo.csv` na pasta `cliente/`.
+O teste de carga (Opção 3 do menu do cliente) irá gerar automaticamente os arquivos `tempo_Sequencial.csv` e `tempo_Concorrente.csv` na pasta `cliente/`.
 
 Para gerar os gráficos `.png` a partir desses dados, execute o seguinte comando no terminal do **seu computador** (não dentro do contêiner), na pasta raiz do projeto:
 

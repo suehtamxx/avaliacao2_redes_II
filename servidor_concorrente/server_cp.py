@@ -36,7 +36,7 @@ def handle_request(conn, addr):
 
         if path == '/':
             if method == 'GET':
-                body = "<h1>Pagina Inicial</h1><p>Servidor Competitivo funcionando.</p>"
+                body = "<h1>Pagina Inicial</h1><p>Servidor Concorrente funcionando.</p>"
                 send_response(conn, '200 OK', body, custom_id_header)
             else:
                 send_response(conn, '405 Method Not Allowed', '<h1>405 Method Not Allowed</h1>', custom_id_header)
@@ -46,7 +46,7 @@ def handle_request(conn, addr):
                 print(f"Thread {threading.current_thread().name} iniciando tarefa pesada.")
                 time.sleep(5)
                 print(f"Thread {threading.current_thread().name} concluiu.")
-                body = "<h1>Teste de Carga</h1><p>Esta pagina demorou 5 segundos para carregar (Servidor Competitivo).</p>"
+                body = "<h1>Teste de Carga</h1><p>Esta pagina demorou 5 segundos para carregar (Servidor Concorrente).</p>"
                 send_response(conn, '200 OK', body, custom_id_header)
             else:
                 send_response(conn, '405 Method Not Allowed', '<h1>405 Method Not Allowed</h1>', custom_id_header)
@@ -81,7 +81,7 @@ def send_response(conn, status, body, custom_id_header=""):
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen()
-    print(f"Servidor Competitivo escutando em {HOST}:{PORT}\n")
+    print(f"Servidor Concorrente escutando em {HOST}:{PORT}\n")
     
     while True:
         conn, addr = s.accept()

@@ -10,10 +10,10 @@ services:
     ports:
       - "8080:80"
   
-  servidor_competitivo:
+  servidor_concorrente:
     build:
-      context: ./servidor_competitivo
-    container_name: servidor_competitivo
+      context: ./servidor_concorrente
+    container_name: servidor_concorrente
     networks:
       rede-trabalho:
         ipv4_address: 98.52.0.3
@@ -29,7 +29,7 @@ services:
         ipv4_address: 98.52.0.10
     depends_on:
       - servidor_sequencial
-      - servidor_competitivo
+      - servidor_concorrente
     tty: true
     stdin_open: true
     volumes:

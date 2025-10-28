@@ -4,7 +4,7 @@ import time
 import threading
 
 SERVER_HOST_SEQ = 'servidor_sequencial'
-SERVER_HOST_CONC = 'servidor_competitivo'
+SERVER_HOST_CONC = 'servidor_concorrente'
 SERVER_PORT = 80
 NUM_CLIENTES_SIMULTANEOS = 10 
 
@@ -129,11 +129,11 @@ def rodar_teste_de_carga_completo():
     tempo_sequencial = teste_simultaneo("Sequencial", SERVER_HOST_SEQ)
     print("\n5 segundos até o próximo teste.\n")
     time.sleep(5)
-    tempo_concorrente = teste_simultaneo("Competitivo", SERVER_HOST_CONC)
+    tempo_concorrente = teste_simultaneo("Concorrente", SERVER_HOST_CONC)
 
     print("\n\n Resultados do Teste de Carga")
     print(f"O servidor Sequencial levou {tempo_sequencial:.4f} segundos.")
-    print(f"O servidor Competitivo levou {tempo_concorrente:.4f} segundos.")
+    print(f"O servidor Concorrente levou {tempo_concorrente:.4f} segundos.")
     
     print("\nTeste concluído. Os arquivos CSV foram gerados.")
     print("Rode 'python3 gerar_graficos.py' no terminal do seu computador (host) para ver os gráficos.")
@@ -143,7 +143,7 @@ def main_menu():
         print("\nMenu Interativo do Cliente")
         print("Qual servidor você quer testar?")
         print("  1. Servidor Sequencial")
-        print("  2. Servidor Competitivo")
+        print("  2. Servidor Concorrente")
         print("\n  Outras Opções:")
         print("  3. Rodar Teste de Carga completo (ambos servidores)")
         print("  4. Sair")
