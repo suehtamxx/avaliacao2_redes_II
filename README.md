@@ -5,6 +5,8 @@ Este projeto foi implementado para comparar o desempenho desempenho de um servid
 ## Requisitos
 * Docker
 * Docker Compose
+* Python 3
+* Bibliotecas Python: `pandas`e `matplotlib`(para gerar os gráficos)
 
 ## 1. Passo a passo como rodar os Servidores
 
@@ -38,7 +40,19 @@ Este projeto foi implementado para comparar o desempenho desempenho de um servid
 
 O teste de carga (Opção 3 do menu do cliente) irá gerar automaticamente os arquivos `tempo_Sequencial.csv` e `tempo_Concorrente.csv` na pasta `cliente/`.
 
-Para gerar os gráficos `.png` a partir desses dados, execute o seguinte comando no terminal do **seu computador** (não dentro do contêiner), na pasta raiz do projeto:
+Para gerar os gráficos `.png` a partir desses dados,  precisa rodar o `gerar_graficos.py` no terminal do **seu computador** (não dentro do contêiner), na pasta raiz do projeto
 
-```bash
-python3 gerar_graficos.py
+1. (Opcional) Criar um ambiente virtual:
+	```bash
+	python3 -m venv venv
+	source venv/bin/activate
+	```
+2. Instale as dependências a partir do arquivo `requirements.txt`:
+	```bash
+	pip install -r requirements.txt
+	```
+3. Agora execute este script para gerar os gŕaficos:
+	```bash
+	python3 gerar_graficos.py
+	```
+Isso irá criar os arquivos `grafico_linhas_comparativo.png` e `grafico_barras_media.png` na pasta raiz.
