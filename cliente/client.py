@@ -136,7 +136,7 @@ def rodar_teste_de_carga_completo():
     print(f"O servidor Concorrente levou {tempo_concorrente:.4f} segundos.")
     
     print("\nTeste concluído. Os arquivos CSV foram gerados.")
-    print("Rode 'python3 gerar_graficos.py' no terminal do seu computador (host) para ver os gráficos.")
+    print("Rode 'python3 gerar_graficos.py' no terminal do seu computador (host) para gerar os gráficos.")
 
 def main_menu():
     while True:
